@@ -1,0 +1,144 @@
+;; .emacs
+
+;;; uncomment this line to disable loading of "default.el" at startup
+;; (setq inhibit-default-init t)
+
+;; turn on font-lock mode
+(when (fboundp 'global-font-lock-mode)
+  (global-font-lock-mode t))
+
+;; enable visual feedback on selections
+;(setq transient-mark-mode t)
+
+;; default to better frame titles
+(setq frame-title-format
+      (concat  "%b - emacs@" (system-name)))
+
+;; default to unified diffs
+(setq diff-switches "-u")
+
+;; always end a file with a newline
+;(setq require-final-newline 'query)
+
+(global-set-key "\C-j" 'goto-line)
+
+
+;;; uncomment this line to disable loading of "default.el" at startup
+(setq inhibit-default-init t)
+
+;; turn on font-lock mode
+(when (fboundp 'global-font-lock-mode)
+  (global-font-lock-mode t))
+
+;; enable visual feedback on selections
+(setq transient-mark-mode t)
+
+;; default to better frame titles
+(setq frame-title-format
+      (concat  "%b - emacs@" system-name))
+
+(global-set-key "\C-j" 'goto-line)
+
+;;; Word Count
+(defun word-count nil "Count words in buffer" (interactive)
+  (shell-command-on-region (point-min) (point-max) "wc -w"))
+
+;;; Matlab-mode setup:
+
+;; Add local lisp folder to load-path
+(setq load-path (append load-path (list "~/.emacsExt")))
+
+;; Set up matlab-mode to load on .m files
+(autoload 'matlab-mode "matlab" "Enter MATLAB mode." t)
+(setq auto-mode-alist (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
+(autoload 'matlab-shell "matlab" "Interactive MATLAB mode." t)
+
+;; Customization:
+(setq matlab-indent-function t); if you want function bodies indented
+(setq matlab-verify-on-save-flag nil) ; turn off auto-verify on save
+(defun my-matlab-mode-hook ()
+  (setq fill-column 76)); where auto-fill should wrap
+(add-hook 'matlab-mode-hook 'my-matlab-mode-hook)
+(defun my-matlab-shell-mode-hook ()
+  '())
+(add-hook 'matlab-shell-mode-hook 'my-matlab-shell-mode-hook)
+
+;; Turn off Matlab desktop
+(setq matlab-shell-command-switches '("-nojvm"))
+
+;; Turn off annoying Welcome Screen when opening a file
+(setq inhibit-startup-echo-area-message t)
+(setq initial-scratch-message nil)
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-message t) 
+
+
+;; put all backups and autosaves on ~/.emacs.d/backups/ 
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+
+
+;; Allow Search under curser
+(defun my-isearch-word-at-point ()
+  (interactive)
+  (call-interactively 'isearch-forward-regexp))
+
+(defun my-isearch-yank-word-hook ()
+  (when (equal this-command 'my-isearch-word-at-point)
+    (let ((string (concat "\\<"
+                          (buffer-substring-no-properties
+                           (progn (skip-syntax-backward "w_") (point))
+                           (progn (skip-syntax-forward "w_") (point)))
+                          "\\>")))
+      (if (and isearch-case-fold-search
+               (eq 'not-yanks search-upper-case))
+          (setq string (downcase string)))
+      (setq isearch-string string
+            isearch-message
+            (concat isearch-message
+                    (mapconcat 'isearch-text-char-description
+                               string ""))
+            isearch-yank-flag t)
+      (isearch-search-and-update))))
+
+(add-hook 'isearch-mode-hook 'my-isearch-yank-word-hook)
+
+(global-set-key "\C-t" 'my-isearch-word-at-point)
+
+(put 'downcase-region 'disabled nil)
+ 
+(put 'upcase-region 'disabled nil)
+
+;;; Backspace problem fix 
+;;; Backspace was initially ^H, which gets fixed now !!
+(keyboard-translate ?\C-h ?\C-?)
+(keyboard-translate ?\C-? ?\C-h)
+(global-set-key [?\C-h] 'delete-backward-char)
+(global-set-key [?\C-x ?h] 'help-command)
+
+;;; Verilog mode setup
+(autoload 'verilog-mode "verilog-mode" "Verilog mode" t )
+(add-to-list 'auto-mode-alist '("\\.[ds]?vh?\\'" . verilog-mode))
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; RRS (23rd May 2011) : Display line numbers on the left hand side
+;;; Line numbering fixes
+(require 'linum)
+
+;;; Enable line numbering by default
+(global-linum-mode 1)
+
+;;; Line numbering format is set to be right justified
+(setq linum-format
+      (lambda (line)
+            (propertize (format
+	    		(let ((w (length (number-to-string
+                             (count-lines (point-min) (point-max))))))
+                           (concat "%" (number-to-string w) "d "))
+                         line)
+                        'face 'linum)))	
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
