@@ -111,5 +111,10 @@ safe_rm() # Safe rm procedure
     done
 }
 
-
+# GIT hack (branch name on command line)
+function bash_git_branch
+{
+  git branch 2> /dev/null | grep \* | python -c "print '['+raw_input()[2:]+']'" 2> /dev/null
+}
+PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w $(bash_git_branch)\$ '
 
