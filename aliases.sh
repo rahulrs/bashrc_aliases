@@ -31,6 +31,7 @@ alias ds="du -hs"
 alias dbox="~/.dropbox-dist/dropboxd &"
 alias brm="/bin/rm"
 alias lns="ln -s"
+alias tree="tree --charset=ASCII"
 
 # XPS system
 alias xpss="xps system &"
