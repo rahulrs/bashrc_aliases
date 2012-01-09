@@ -1,0 +1,4 @@
+FIXES CLOSE MIN MAX BUTTONS TO RIGHT
+gconftool-2 --type string --set /apps/metacity/general/button_layout ":minimize,maximize,close"
+
+

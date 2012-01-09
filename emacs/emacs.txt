@@ -152,11 +152,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Highlight current line
 
-;; (require 'highlight-current-line)
-;; (highlight-current-line-on t)
+(require 'highlight-current-line)
+(highlight-current-line-on t)
 
-;; ;; To customize the background color
-;; (set-face-background 'highlight-current-line-face "dark blue")
+;; To customize the background color
+(set-face-background 'highlight-current-line-face "light blue")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
