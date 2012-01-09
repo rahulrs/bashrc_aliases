@@ -47,7 +47,7 @@
 
 ;; Add local lisp folder to load-path
 ;(setq load-path (append load-path (list "~/.emacsExt")))
-(setq load-path (append load-path (list "~/.emacs_el/linum.el")))
+(setq load-path (append load-path (list "~/.emacs_el")))
 
 ;; Set up matlab-mode to load on .m files
 (autoload 'matlab-mode "matlab" "Enter MATLAB mode." t)
@@ -150,5 +150,13 @@
 (setq vc-handled-backends ())
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Highlight current line
 
+;; (require 'highlight-current-line)
+;; (highlight-current-line-on t)
+
+;; ;; To customize the background color
+;; (set-face-background 'highlight-current-line-face "dark blue")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
