@@ -21,7 +21,6 @@ alias py="python"
 alias ff="firefox"
 alias oo="openoffice.org-2.0"
 alias gd="gedit"
-alias ac="acroread"
 alias ev="evince"
 alias cd4="cd ../../../.."
 alias cd3="cd ../../.."
@@ -40,6 +39,9 @@ alias xpss="xps system &"
 alias ea="emacs -nw"
 alias ra="emacs -nw"
 alias e="emacs -nw"
+
+# Python
+alias py="python"
 
 # Remote Desktop
 alias rdesktop="rdesktop -g 1154x864 -a 16"
