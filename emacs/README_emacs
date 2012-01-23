@@ -1,0 +1,9 @@
+This a my collection of emacs customizations that I plan to keep for some time.
+
+Instructions:
+- Sym-link this directory to ~/.emacs_el
+- Sym-link emacs.txt to ~/.emacs
+
+Emacs must be 23.2 or greater
+
+
