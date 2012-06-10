@@ -139,15 +139,15 @@
                         'face 'linum)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Keyboard scroll 
+;;; RRS: Keyboard scroll 
 (setq scroll-step 1) ;; Scroll 'x' lines at a time (here 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Remove source control hooks 
+;;; RRS: Remove source control hooks 
 (setq vc-handled-backends ())
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Highlight current line
+;;; RRS: Highlight current line
 
 ;; (require 'highlight-current-line)
 ;; (highlight-current-line-on t)
@@ -156,4 +156,22 @@
 ;; (set-face-background 'highlight-current-line-face "light blue")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; RRS: Cscope
+;; (require 'xcscope)
+;; (setq cscope-do-not-update-database t)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; RRS: VHDL Customizations
+;;; Usage: M-x vhdl-ieee will populate the library lines at the top of the file
+
+(defun vhdl-ieee () "Insert ieee use clauses"
+(interactive)
+(insert "
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_unsigned.all;
+use ieee.numeric_std.all;
+"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

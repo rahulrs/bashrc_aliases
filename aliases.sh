@@ -31,12 +31,14 @@ alias dbox="~/.dropbox-dist/dropboxd &"
 alias brm="/bin/rm"
 alias lns="ln -s"
 alias tree="tree --charset=ASCII"
+alias cdr="cd -; cd -"
 
 # XPS system
 alias xpss="xps system &"
 
 # Emacs
 alias ea="emacs -nw"
+alias em="emacs -nw"
 alias ra="emacs -nw"
 alias e="emacs -nw"
 
@@ -114,10 +116,11 @@ safe_rm() # Safe rm procedure
     done
 }
 
-# GIT hack (branch name on command line)
-function bash_git_branch
+
+# MKDIR and then CD
+function mkcd() 
 {
-  git branch 2> /dev/null | grep \* | python -c "print '['+raw_input()[2:]+']'" 2> /dev/null
+    mkdir -p $@
+    cd $@
 }
-PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w $(bash_git_branch)\$ '
 
