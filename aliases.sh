@@ -82,8 +82,11 @@ alias vmpf="vsim *.mpf &"
 # USAGE: alert "<custom message>"
 alias alert="zenity --info --text "
 
+## Less
+alias less="less -i -R -S"
+
 # Reckless rm prevention script
-alias rm='safe_rm'
+# alias rm='safe_rm'
 safe_rm() # Safe rm procedure
 {
     # Cycle through each argument for deletion
@@ -123,4 +126,6 @@ function mkcd()
     mkdir -p $@
     cd $@
 }
+
+export PS1="[\$?] \[$(tput sgr0)\]\[\033[38;5;10m\]\u\[$(tput sgr0)\]@\[$(tput sgr0)\]\[\033[38;5;11m\]\h\[$(tput sgr0)\]:\[$(tput sgr0)\]\[\033[38;5;14m\]\w\[$(tput sgr0)\] \[$(tput sgr0)\]\[\033[38;5;5m\]\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')\[$(tput sgr0)\]\n\\$ \[$(tput sgr0)\]"
 
